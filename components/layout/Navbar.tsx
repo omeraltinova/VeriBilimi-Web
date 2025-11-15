@@ -2,11 +2,12 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { useAuth } from "@/lib/auth/context";
 
 export default function Navbar() {
-  // TODO: Gerçek auth state buraya gelecek (şimdilik simüle ediyoruz)
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const { user, logout } = useAuth();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const isLoggedIn = !!user;
 
   return (
     <nav className="bg-white shadow-md border-b border-gray-200">
@@ -47,12 +48,17 @@ export default function Navbar() {
           {/* Auth Butonları - Desktop */}
           <div className="hidden sm:flex sm:items-center sm:space-x-4">
             {isLoggedIn ? (
-              <button
-                onClick={() => setIsLoggedIn(false)}
-                className="px-4 py-2 text-sm text-gray-700 hover:text-gray-900 transition"
-              >
-                Çıkış Yap
-              </button>
+              <>
+                <span className="text-sm text-gray-700">
+                  Merhaba, {user?.username || user?.email}
+                </span>
+                <button
+                  onClick={logout}
+                  className="px-4 py-2 text-sm text-gray-700 hover:text-gray-900 transition"
+                >
+                  Çıkış Yap
+                </button>
+              </>
             ) : (
               <>
                 <Link
@@ -119,12 +125,17 @@ export default function Navbar() {
           </div>
           <div className="pt-4 pb-3 border-t border-gray-200">
             {isLoggedIn ? (
-              <button
-                onClick={() => setIsLoggedIn(false)}
-                className="block w-full text-left pl-3 pr-4 py-2 text-base font-medium text-gray-700 hover:bg-gray-50"
-              >
-                Çıkış Yap
-              </button>
+              <>
+                <div className="pl-3 pr-4 py-2 text-base font-medium text-gray-900">
+                  {user?.username || user?.email}
+                </div>
+                <button
+                  onClick={logout}
+                  className="block w-full text-left pl-3 pr-4 py-2 text-base font-medium text-gray-700 hover:bg-gray-50"
+                >
+                  Çıkış Yap
+                </button>
+              </>
             ) : (
               <div className="space-y-1">
                 <Link

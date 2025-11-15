@@ -10,6 +10,8 @@ export type Movie = {
 
 // Kullanıcı-Film etkileşimi
 export type UserMovieInteraction = {
+  id: string;
+  userId: string;
   movieId: string;
   watched: boolean;        // İzledim mi?
   liked?: boolean;         // Beğendim mi / beğenmedim mi? (undefined: karar vermemiş)
