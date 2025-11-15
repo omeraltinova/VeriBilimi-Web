@@ -1,0 +1,122 @@
+[
+  {
+    "id": "1",
+    "title": "The Shawshank Redemption",
+    "year": 1994,
+    "genres": ["Drama"],
+    "description": "Haksız yere hüküm giymiş bir bankacının hapisteki yaşamı ve özgürlük mücadelesi.",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/q6y0Go1tsGEsmtFryDOJo3dEmqu.jpg"
+  },
+  {
+    "id": "2",
+    "title": "The Godfather",
+    "year": 1972,
+    "genres": ["Crime", "Drama"],
+    "description": "Güçlü bir mafya ailesinin hikayesi ve iktidar mücadelesi.",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/3bhkrj58Vtu7enYsRolD1fZdja1.jpg"
+  },
+  {
+    "id": "3",
+    "title": "The Dark Knight",
+    "year": 2008,
+    "genres": ["Action", "Crime", "Drama"],
+    "description": "Batman, Joker'in Gotham'ı kaosa sürüklemesini engellemeye çalışır.",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/qJ2tW6WMUDux911r6m7haRef0WH.jpg"
+  },
+  {
+    "id": "4",
+    "title": "Pulp Fiction",
+    "year": 1994,
+    "genres": ["Crime", "Drama"],
+    "description": "Los Angeles'ta birbirine bağlı suç hikayelerinin anlatımı.",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/d5iIlFn5s0ImszYzBPb8JPIfbXD.jpg"
+  },
+  {
+    "id": "5",
+    "title": "Schindler's List",
+    "year": 1993,
+    "genres": ["Biography", "Drama", "History"],
+    "description": "Nazi Almanyası'nda Yahudileri kurtaran bir iş adamının gerçek hikayesi.",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/sF1U4EUQS8YHUYjNl3pMGNIQyr0.jpg"
+  },
+  {
+    "id": "6",
+    "title": "Inception",
+    "year": 2010,
+    "genres": ["Action", "Sci-Fi", "Thriller"],
+    "description": "Rüyalara girip fikir çalan bir hırsızın son görevi.",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/9gk7adHYeDvHkCSEqAvQNLV5Uge.jpg"
+  },
+  {
+    "id": "7",
+    "title": "Fight Club",
+    "year": 1999,
+    "genres": ["Drama"],
+    "description": "Uykusuz bir adam ve sabun satıcısının başlattığı yeraltı dövüş kulübü.",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/pB8BM7pdSp6B6Ih7QZ4DrQ3PmJK.jpg"
+  },
+  {
+    "id": "8",
+    "title": "Forrest Gump",
+    "year": 1994,
+    "genres": ["Drama", "Romance"],
+    "description": "Düşük IQ'lu ama iyi kalpli bir adamın olağanüstü yaşam hikayesi.",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/arw2vcBveWOVZr6pxd9XTd1TdQa.jpg"
+  },
+  {
+    "id": "9",
+    "title": "The Matrix",
+    "year": 1999,
+    "genres": ["Action", "Sci-Fi"],
+    "description": "Gerçekliğin bir simülasyon olduğunu öğrenen bir bilgisayar programcısı.",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/f89U3ADr1oiB1s9GkdPOEpXUk5H.jpg"
+  },
+  {
+    "id": "10",
+    "title": "Goodfellas",
+    "year": 1990,
+    "genres": ["Crime", "Drama"],
+    "description": "Brooklyn'li bir gencin mafya dünyasındaki yükselişi ve düşüşü.",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/aKuFiU82s5ISJpGZp7YkIr3kCUd.jpg"
+  },
+  {
+    "id": "11",
+    "title": "Interstellar",
+    "year": 2014,
+    "genres": ["Adventure", "Drama", "Sci-Fi"],
+    "description": "İnsanlığı kurtarmak için uzaya yolculuk eden astronotların hikayesi.",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/gEU2QniE6E77NI6lCU6MxlNBvIx.jpg"
+  },
+  {
+    "id": "12",
+    "title": "The Silence of the Lambs",
+    "year": 1991,
+    "genres": ["Crime", "Drama", "Thriller"],
+    "description": "Genç bir FBI ajanının seri katil Hannibal Lecter'dan yardım istemesi.",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/uS9m8OBk1A8eM9I042bx8XXpqAq.jpg"
+  },
+  {
+    "id": "13",
+    "title": "Parasite",
+    "year": 2019,
+    "genres": ["Comedy", "Drama", "Thriller"],
+    "description": "Yoksul bir ailenin zengin bir aileye sızması ve beklenmedik sonuçlar.",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg"
+  },
+  {
+    "id": "14",
+    "title": "Gladiator",
+    "year": 2000,
+    "genres": ["Action", "Adventure", "Drama"],
+    "description": "İhanete uğrayan bir Roma generalinin gladyatör olarak intikam yolculuğu.",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/ty8TGRuvJLPUmAR1H1nRIsgwvim.jpg"
+  },
+  {
+    "id": "15",
+    "title": "The Prestige",
+    "year": 2006,
+    "genres": ["Drama", "Mystery", "Thriller"],
+    "description": "İki sihirbazın birbirlerini alt etmek için girdikleri tehlikeli rekabet.",
+    "posterUrl": "https://image.tmdb.org/t/p/w500/tRNlZbgNCNOpLpbPEz5L8G8A0JN.jpg"
+  }
+]
