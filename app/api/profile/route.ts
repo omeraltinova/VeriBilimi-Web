@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getUserStats, getWatchedMovies } from "@/lib/models/interaction";
 import { getAllMovies } from "@/lib/models/movie";
+import { getUserReviews } from "@/lib/models/review";
 import type { Movie } from "@/lib/types";
 
 interface WatchedMovie extends Movie {
@@ -27,12 +28,16 @@ export async function GET(request: NextRequest) {
     // İzlenen filmleri al
     const watchedMovies = getWatchedMovies(userId) as WatchedMovie[];
 
+    // Kullanıcının yorumlarını al
+    const reviews = getUserReviews(userId);
+
     // Basit öneri algoritması
     const recommendation = getRecommendation(userId, watchedMovies);
 
     return NextResponse.json({
       stats,
       watchedMovies,
+      reviews,
       recommendation,
     });
   } catch (error) {

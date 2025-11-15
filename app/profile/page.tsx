@@ -5,7 +5,7 @@ import { useAuth } from "@/lib/auth/context";
 import { useRouter } from "next/navigation";
 import StatsSummary from "@/components/profile/StatsSummary";
 import RecommendationCard from "@/components/profile/RecommendationCard";
-import type { Movie } from "@/lib/types";
+import type { Movie, Review } from "@/lib/types";
 
 interface ProfileData {
   stats: {
@@ -14,6 +14,7 @@ interface ProfileData {
     totalLiked: number;
   };
   watchedMovies: Array<Movie & { watched: boolean; liked?: boolean; rating?: number }>;
+  reviews: Array<Review & { movieTitle: string; movieYear: number }>;
   recommendation: Movie | null;
 }
 
@@ -187,6 +188,57 @@ export default function ProfilePage() {
               className="inline-block px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
             >
               Filmleri Keşfet
+            </a>
+          </div>
+        )}
+      </div>
+
+      {/* Yorumlarım */}
+      <div className="bg-white rounded-lg shadow-md p-6 mt-6">
+        <h2 className="text-xl font-bold text-gray-900 mb-4">
+          Yorumlarım ({profileData.reviews.length})
+        </h2>
+
+        {profileData.reviews.length > 0 ? (
+          <div className="space-y-4">
+            {profileData.reviews.map((review) => (
+              <div
+                key={review.id}
+                className="p-4 bg-purple-50 border border-purple-200 rounded-lg"
+              >
+                <div className="flex items-start justify-between mb-2">
+                  <div>
+                    <h3 className="font-semibold text-gray-900">
+                      {review.movieTitle}
+                    </h3>
+                    <p className="text-sm text-gray-600">{review.movieYear}</p>
+                  </div>
+                  <span className="text-xs text-gray-500">
+                    {new Date(review.createdAt).toLocaleDateString("tr-TR")}
+                  </span>
+                </div>
+
+                <p className="text-gray-700 text-sm leading-relaxed whitespace-pre-wrap">
+                  {review.reviewText}
+                </p>
+
+                {review.updatedAt !== review.createdAt && (
+                  <p className="text-xs text-gray-400 mt-2">
+                    Düzenlendi: {new Date(review.updatedAt).toLocaleDateString("tr-TR")}
+                  </p>
+                )}
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className="text-center py-12">
+            <div className="text-6xl mb-4">💬</div>
+            <p className="text-gray-600 mb-4">Henüz yorum yapmadın</p>
+            <a
+              href="/movies"
+              className="inline-block px-6 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition"
+            >
+              Film İzle ve Yorum Yap
             </a>
           </div>
         )}

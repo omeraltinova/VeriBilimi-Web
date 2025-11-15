@@ -26,6 +26,17 @@ export type User = {
   username?: string;
 };
 
+// Film yorumu
+export type Review = {
+  id: string;
+  userId: string;
+  movieId: string;
+  reviewText: string;
+  createdAt: string;
+  updatedAt: string;
+  username?: string;      // Join ile gelecek (kullanıcı adı gösterimi için)
+};
+
 // Uygulama state'i
 export type AppState = {
   user: User | null;

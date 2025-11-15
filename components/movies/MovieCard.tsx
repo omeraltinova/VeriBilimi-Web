@@ -1,8 +1,10 @@
 "use client";
 
-import { useState } from "react";
-import type { Movie, UserMovieInteraction } from "@/lib/types";
+import { useState, useEffect } from "react";
+import type { Movie, UserMovieInteraction, Review } from "@/lib/types";
 import { useAuth } from "@/lib/auth/context";
+import ReviewModal from "./ReviewModal";
+import ReviewsList from "./ReviewsList";
 
 interface MovieCardProps {
   movie: Movie;
@@ -13,6 +15,9 @@ interface MovieCardProps {
 export default function MovieCard({ movie, interaction, onInteractionChange }: MovieCardProps) {
   const { user } = useAuth();
   const [isLoading, setIsLoading] = useState(false);
+  const [isReviewModalOpen, setIsReviewModalOpen] = useState(false);
+  const [showReviews, setShowReviews] = useState(false);
+  const [userReview, setUserReview] = useState<Review | undefined>(undefined);
 
   const handleWatchedToggle = async () => {
     if (!user || isLoading) return;
@@ -42,6 +47,49 @@ export default function MovieCard({ movie, interaction, onInteractionChange }: M
     await onInteractionChange(movie.id, { rating });
 
     setIsLoading(false);
+  };
+
+  // Kullanıcının yorumunu yükle
+  useEffect(() => {
+    if (user && showReviews) {
+      fetchUserReview();
+    }
+  }, [user, showReviews]);
+
+  const fetchUserReview = async () => {
+    if (!user) return;
+
+    try {
+      const response = await fetch(`/api/reviews?movieId=${movie.id}`);
+      const data = await response.json();
+
+      if (response.ok) {
+        const review = data.reviews.find((r: Review) => r.userId === user.id);
+        setUserReview(review);
+      }
+    } catch (error) {
+      console.error("Error fetching user review:", error);
+    }
+  };
+
+  const handleSaveReview = async (reviewText: string) => {
+    if (!user) return;
+
+    const response = await fetch("/api/reviews", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        userId: user.id,
+        movieId: movie.id,
+        reviewText,
+      }),
+    });
+
+    if (response.ok) {
+      await fetchUserReview();
+    } else {
+      throw new Error("Failed to save review");
+    }
   };
 
   return (
@@ -143,13 +191,48 @@ export default function MovieCard({ movie, interaction, onInteractionChange }: M
                 ))}
               </div>
             </div>
+
+            {/* Yorum Yaz Butonu */}
+            <button
+              onClick={() => setIsReviewModalOpen(true)}
+              className="w-full px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition text-sm font-medium"
+            >
+              {userReview ? "✏️ Yorumu Düzenle" : "💬 Yorum Yaz"}
+            </button>
+
+            {/* Yorumları Göster/Gizle */}
+            <button
+              onClick={() => setShowReviews(!showReviews)}
+              className="w-full px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition text-sm"
+            >
+              {showReviews ? "Yorumları Gizle" : "Yorumları Göster"}
+            </button>
           </div>
         ) : (
           <div className="text-center py-4 text-sm text-gray-500">
             Etkileşim için giriş yapın
           </div>
         )}
+
+        {/* Yorumlar */}
+        {showReviews && (
+          <div className="border-t pt-4 mt-4">
+            <ReviewsList movieId={movie.id} currentUserId={user?.id} />
+          </div>
+        )}
       </div>
+
+      {/* Review Modal */}
+      {user && (
+        <ReviewModal
+          movie={movie}
+          userId={user.id}
+          existingReview={userReview}
+          isOpen={isReviewModalOpen}
+          onClose={() => setIsReviewModalOpen(false)}
+          onSave={handleSaveReview}
+        />
+      )}
     </div>
   );
 }

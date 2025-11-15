@@ -59,6 +59,21 @@ function initializeDatabase(database: Database.Database) {
     )
   `);
 
+  // Reviews tablosu
+  database.exec(`
+    CREATE TABLE IF NOT EXISTS reviews (
+      id TEXT PRIMARY KEY,
+      user_id TEXT NOT NULL,
+      movie_id TEXT NOT NULL,
+      review_text TEXT NOT NULL,
+      created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+      updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+      FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+      FOREIGN KEY (movie_id) REFERENCES movies(id) ON DELETE CASCADE,
+      UNIQUE(user_id, movie_id)
+    )
+  `);
+
   // İndeksler
   database.exec(`
     CREATE INDEX IF NOT EXISTS idx_interactions_user
@@ -66,6 +81,12 @@ function initializeDatabase(database: Database.Database) {
 
     CREATE INDEX IF NOT EXISTS idx_interactions_movie
     ON user_movie_interactions(movie_id);
+
+    CREATE INDEX IF NOT EXISTS idx_reviews_user
+    ON reviews(user_id);
+
+    CREATE INDEX IF NOT EXISTS idx_reviews_movie
+    ON reviews(movie_id);
   `);
 }
 
